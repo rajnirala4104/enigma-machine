@@ -1,13 +1,11 @@
 import pygame
 
 class Rotor():
-    def __init__(self, r, left=None, right=None, pos_rect):
+    def __init__(self, r, left=None, right=None):
         self.r = r
         self.pos = 0
         self.left = left
         self.right = right
-        self.pos_rect = pos_rect
-        self.set_button_up = Rect(pos_rect.x, pos_rect.y - pos_rect.h - 10, pos_rect.w, pos_rect.h)
 
     def output(self, s):
         if self.left == None:
@@ -30,10 +28,6 @@ class Rotor():
             if self.left:
                 self.left.inc()
             self.pos = 0
-
-    def set_rotor(self, click_pos):
-        if self.set_button_up.collidepoint(click_pos):
-
 
     def render(self, x, y):
         surface = fontRotor.render(f" {self.pos:02d} ", True, "black", "grey")
@@ -241,7 +235,7 @@ while not quit:
                 if keyPressed is None and e.unicode.upper() in keys:
                     keyPressed = e.unicode
                     keyOut = rotor[0].output(keyPressed.upper())
-                    rotor[1].inc() #Can I make this implicit in the class inself may be a class enigma that wraps, rotors and plugboard and light
+                    rotor[1].inc() #Can I make this implicit in the class inself may be a class enigma that wraps, rotors and plugboard and lightboard
                     keys[keyOut].lit = True
                     print(keyOut, end="")
 
